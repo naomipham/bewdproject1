@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
  // include the config file 
  require "../config.php";
  require "../common.php";
@@ -10,19 +12,16 @@
          // define database connection
          $connection = new PDO($dsn, $username, $password, $options);
          
-         // set id variable
+        // set id variable
          $id = $_GET["id"];
          
          // Create the SQL 
-         $sql = "DELETE FROM works WHERE id = :id";
-
+         $sql = "DELETE FROM works WHERE userid= :uid AND id= :id"; 
+        
          // Prepare the SQL
          $statement = $connection->prepare($sql);
-         
-         // bind the id to the PDO
-         $statement->bindValue(':id', $id);
-         
-         // execute the statement
+         $statement->bindValue(':uid',$_SESSION['id']);
+         $statement->bindValue(':id',$id);
          $statement->execute();
 
          // Success message
@@ -39,10 +38,11 @@
      $connection = new PDO($dsn, $username, $password, $options);
      
      // SECOND: Create the SQL 
-     $sql = "SELECT * FROM works";
+     $sql = "SELECT * FROM works WHERE userid= :uid"; 
      
      // THIRD: Prepare the SQL
      $statement = $connection->prepare($sql);
+     $statement->bindValue(':uid',$_SESSION['id']);
      $statement->execute();
      
      // FOURTH: Put it into a $result object that we can access in the page
@@ -60,6 +60,8 @@
     // if (isset($_POST['submit'])) {
     //     //if there are some results
     //     if ($result && $statement->rowCount() > 0) { ?>
+
+<div class="body">
 <h2>Results</h2>
 
 <?php // This is a loop, which will loop through each result in the array
@@ -68,8 +70,8 @@
 
 <p>
     <?php //echo $row; ?>
-    ID:
-    <?php echo $row["id"]; ?><br> 
+    Due Date:
+    <?php echo $row['duedate']; ?><br>
     
     Class:
     <?php echo $row['class']; ?><br> 
@@ -77,12 +79,10 @@
     Assignment Name:
     <?php echo $row['assignmentname']; ?><br> 
     
-    Due Date:
-    <?php echo $row['duedate']; ?><br>
-    
     Weighing:
     <?php echo $row['weighing']; ?><br>
-    <a href='delete.php?id=<?php echo $row['id']; ?>'>Delete</a>    
+    <a onClick="return confirm('Do you really want to delete this item?');" 
+    href='delete.php?id=<?php echo $row['id']; ?>'>Delete</a>
 </p>
 
 <?php // this willoutput all the data from the array
@@ -98,4 +98,5 @@
 <form method="post" onsubmit="return confirm('Are you sure?')">
     <input type="submit" name="submit" value="View all">
 </form>
+</div>
 <?php include "templates/footer.php"; ?>

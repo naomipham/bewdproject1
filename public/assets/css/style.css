@@ -1,0 +1,51 @@
+/* class */
+.header {
+    margin-left: 100px;
+    margin-right:100px;
+    height:150px;
+    padding-top: 15px;
+}
+
+.body {
+    margin-left: 100px;
+    margin-right:100px;
+    padding-bottom: 15px;
+}
+
+
+/* Navigation bar */
+nav {
+    margin:0px;
+}
+
+nav ul {
+    position: fixed; 
+
+}
+
+nav ul li { 
+    display: inline;
+    font-size: 16px;
+    padding: 10px;
+
+}
+
+nav ul li a { 
+    color: #000000;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+}
+
+nav ul li a:hover { 
+    background-color: #25333f;
+    text-decoration: none;
+    
+}
+
+/*typography*/
+
+h1 { 
+    text-align: center;
+}

@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
     // include the config file that we created last week
     require "../config.php";
     require "../common.php";
@@ -52,16 +52,18 @@
             
             // set if as variable
             $id = $_GET['id'];
-            
+            $uid = $_SESSION['id'];
+
             //select statement to get the right data
-            $sql = "SELECT * FROM works WHERE id = :id";
+            $sql = "SELECT * FROM works WHERE id = :id AND userid = :uid";
             
             // prepare the connection
             $statement = $connection->prepare($sql);
             
             //bind the id to the PDO id
             $statement->bindValue(':id', $id);
-            
+            $statement->bindValue(':uid', $uid);
+        
             // now execute the statement
             $statement->execute();
             
@@ -86,12 +88,10 @@
 	<p>Work successfully updated.</p>
 <?php endif; ?>
 
+<div class="body">
 <h2>Edit a work</h2>
 
 <form method="post">
-    
-    <label for="id">ID</label>
-    <input type="text" name="id" id="id" value="<?php echo escape($work['id']); ?>" >
     
     <label for="class">Class</label>
     <input type="text" name="class" id="class" value="<?php echo escape($work['class']); ?>">
@@ -109,9 +109,9 @@
     <input type="text" name="date" id="date" value="<?php echo escape($work['date']); ?>">
 
     <input type="submit" name="submit" value="Save">
-
+ 
 </form>
-
+</div>
 
 
 

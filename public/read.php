@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 // this code will only execute after the submit button is clicked
 if (isset($_POST['submit'])) {
@@ -12,10 +13,11 @@ if (isset($_POST['submit'])) {
         $connection = new PDO($dsn, $username, $password, $options);
 		
         // SECOND: Create the SQL 
-        $sql = "SELECT * FROM works";
+        $sql = "SELECT * FROM works WHERE userid= :uid"; 
         
         // THIRD: Prepare the SQL
         $statement = $connection->prepare($sql);
+        $statement->bindValue(':uid',$_SESSION['id']);
         $statement->execute();
         
         // FOURTH: Put it into a $result object that we can access in the page
@@ -36,6 +38,8 @@ if (isset($_POST['submit'])) {
     if (isset($_POST['submit'])) {
         //if there are some results
         if ($result && $statement->rowCount() > 0) { ?>
+
+<div class="body">
 <h2>Results</h2>
 
 <?php // This is a loop, which will loop through each result in the array
@@ -44,8 +48,9 @@ if (isset($_POST['submit'])) {
 
 <p>
     <?php //echo $row; ?>
-    ID:
-    <?php echo $row["id"]; ?><br> 
+
+    Due Date:
+    <?php echo $row['duedate']; ?><br>
     
     Class:
     <?php echo $row['class']; ?><br> 
@@ -53,11 +58,8 @@ if (isset($_POST['submit'])) {
     Assignment Name:
     <?php echo $row['assignmentname']; ?><br> 
     
-    Due Date:
-    <?php echo $row['duedate']; ?><br>
-    
     Weighing:
-    <?php echo $row['weighing']; ?><br>
+    <?php echo $row['weighing']; ?><br> 
 </p>
 
 <?php // this willoutput all the data from the array
@@ -70,13 +72,11 @@ if (isset($_POST['submit'])) {
     }; 
 ?>
 
+    <form method="post">
 
-
-<form method="post">
-
-    <input type="submit" name="submit" value="View all">
-
-</form>
-
+        <input type="submit" name="submit" value="View all">
+    
+    </form>
+</div>
 
 <?php include "templates/footer.php"; ?>

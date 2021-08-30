@@ -1,8 +1,11 @@
-+<?php 
+<?php 
+session_start();
 
 // this code will only execute after the submit button is clicked
 if (isset($_POST['submit'])) {
-	
+
+
+echo "<h1>Session ID:" . $_SESSION['id'] . "</h1>";
     // include the config file that we created before
     require "../config.php"; 
     
@@ -11,17 +14,24 @@ if (isset($_POST['submit'])) {
         // FIRST: Connect to the database
         $connection = new PDO($dsn, $username, $password, $options);
 		
+        $userid = $_SESSION['id'];
+        $class = $_POST['class'];
+        $assignmentname = $_POST['assignmentname'];
+        $duedate = $_POST['duedate'];
+        $weighing = $_POST['weighing'];
+
         // SECOND: Get the contents of the form and store it in an array
         $new_work = array( 
-            "class" => $_POST['class'], 
-            "assignmentname" => $_POST['assignmentname'],
-            "duedate" => $_POST['duedate'],
-            "weighing" => $_POST['weighing'], 
+            "userid" => $userid,
+            "class" => $class,
+            "assignmentname" => $assignmentname,
+            "duedate" => $duedate,
+            "weighing" => $weighing, 
         );
         
         // THIRD: Turn the array into a SQL statement
-        $sql = "INSERT INTO works (class, assignmentname, duedate, weighing) 
-                VALUES (:class, :assignmentname, :duedate, :weighing)";        
+        $sql = "INSERT INTO works (userid, class, assignmentname, duedate, weighing) 
+                VALUES (:userid, :class, :assignmentname, :duedate, :weighing)";        
         
         // FOURTH: Now write the SQL to the database
         $statement = $connection->prepare($sql);
@@ -37,6 +47,7 @@ if (isset($_POST['submit'])) {
 
 <?php include "templates/header.php"; ?>
 
+<div class="body">
 <h2>Add a work</h2>
 
 <?php if (isset($_POST['submit']) && $statement) { ?>
@@ -61,5 +72,6 @@ if (isset($_POST['submit'])) {
     <input type="submit" name="submit" value="Submit">
 
 </form>
+</div>
 
 <?php include "templates/footer.php"; ?>

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 
+<div class="header">
 <head>
 
     <title>Assignment Tracker</title>
@@ -27,3 +28,4 @@
 
         </nav>
     </header>
+</div>
