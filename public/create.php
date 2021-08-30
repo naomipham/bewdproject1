@@ -47,31 +47,33 @@ echo "<h1>Session ID:" . $_SESSION['id'] . "</h1>";
 
 <?php include "templates/header.php"; ?>
 
+
 <div class="body">
-<h2>Add a work</h2>
+<h2>Add a Assignment</h2>
 
-<?php if (isset($_POST['submit']) && $statement) { ?>
-<p>Work successfully added.</p>
-<?php } ?>
+    <div class="information">
+    <?php if (isset($_POST['submit']) && $statement) { ?>
+    <p>Work successfully added.</p>
+    <?php } ?>
 
-<!--form to collect data for each artwork-->
+    <!--form to collect data for each artwork-->
 
-<form method="post">
-    <label for="class">Class</label>
-    <input type="text" name="class" id="class">
+    <form method="post">
+        <label for="class">Class</label>
+        <input type="text" name="class" id="class">
 
-    <label for="assignmentname">Assignment Name</label>
-    <input type="text" name="assignmentname" id="assignmentname">
+        <label for="assignmentname">Assignment Name</label>
+        <input type="text" name="assignmentname" id="assignmentname">
 
-    <label for="duedate">Due Date</label>
-    <input type="date" name="duedate" id="duedate">
+        <label for="duedate">Due Date</label>
+        <input type="date" value="<?php echo date ('Y-m-d');?>" name="duedate" id="duedate">
 
-    <label for="weighing">Weighing</label>
-    <input type="text" name="weighing" id="weighing">
+        <label for="weighing">Weighing</label>
+        <input type="text" name="weighing" id="weighing">
+        <input type="submit" name="submit" value="Submit" class="button">
 
-    <input type="submit" name="submit" value="Submit">
-
-</form>
+    </form>
+    </div>
 </div>
 
 <?php include "templates/footer.php"; ?>

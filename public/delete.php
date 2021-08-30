@@ -16,7 +16,7 @@ session_start();
          $id = $_GET["id"];
          
          // Create the SQL 
-         $sql = "DELETE FROM works WHERE userid= :uid AND id= :id"; 
+         $sql = "DELETE FROM works WHERE userid= :uid AND id= :id ORDER BY duedate"; 
         
          // Prepare the SQL
          $statement = $connection->prepare($sql);
@@ -38,7 +38,7 @@ session_start();
      $connection = new PDO($dsn, $username, $password, $options);
      
      // SECOND: Create the SQL 
-     $sql = "SELECT * FROM works WHERE userid= :uid"; 
+     $sql = "SELECT * FROM works WHERE userid= :uid ORDER BY duedate"; 
      
      // THIRD: Prepare the SQL
      $statement = $connection->prepare($sql);
@@ -55,48 +55,37 @@ session_start();
 
 <?php include "templates/header.php"; ?>
 
-
-<?php  
-    // if (isset($_POST['submit'])) {
-    //     //if there are some results
-    //     if ($result && $statement->rowCount() > 0) { ?>
-
 <div class="body">
-<h2>Results</h2>
+<h2>Delete Assignment</h2>
+<p> Congratulations on finishing your assignment, lets get rid of it!</p>
+    <div class="information">
+    <?php // This is a loop, which will loop through each result in the array
+        foreach($result as $row) { 
+    ?>
+    <p>
+        <?php //echo $row; ?>
+        Due Date:
+        <?php echo $row['duedate']; ?><br>
+        
+        Class:
+        <?php echo $row['class']; ?><br> 
+        
+        Assignment Name:
+        <?php echo $row['assignmentname']; ?><br> 
+        
+        Weighing:
+        <?php echo $row['weighing']; ?><br>
+        <a onClick="return confirm('Do you really want to delete this item?');" 
+        href='delete.php?id=<?php echo $row['id']; ?>'>Delete</a>
+    </p>
 
-<?php // This is a loop, which will loop through each result in the array
-    foreach($result as $row) { 
-?>
+    <hr>        
+    <?php }; 
 
-<p>
-    <?php //echo $row; ?>
-    Due Date:
-    <?php echo $row['duedate']; ?><br>
-    
-    Class:
-    <?php echo $row['class']; ?><br> 
-    
-    Assignment Name:
-    <?php echo $row['assignmentname']; ?><br> 
-    
-    Weighing:
-    <?php echo $row['weighing']; ?><br>
-    <a onClick="return confirm('Do you really want to delete this item?');" 
-    href='delete.php?id=<?php echo $row['id']; ?>'>Delete</a>
-</p>
-
-<?php // this willoutput all the data from the array
-            //echo '<pre>'; var_dump($row); 
-?>
-
-<hr>
-<?php }; //close the foreach
-    //     }; 
-    // }; 
-?>
-
-<form method="post" onsubmit="return confirm('Are you sure?')">
-    <input type="submit" name="submit" value="View all">
-</form>
+    ?>
+    <form method="post" onsubmit="return confirm('Are you sure?')">
+        <input type="submit" name="submit" value="View all" class="button">
+    </form>
+    </div>
 </div>
 <?php include "templates/footer.php"; ?>

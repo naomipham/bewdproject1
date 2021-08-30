@@ -6,14 +6,14 @@ if (isset($_POST['submit'])) {
 	
     // include the config file that we created before
     require "../config.php"; 
-    
+
     // this is called a try/catch statement 
 	try {
         // FIRST: Connect to the database
         $connection = new PDO($dsn, $username, $password, $options);
 		
         // SECOND: Create the SQL 
-        $sql = "SELECT * FROM works WHERE userid= :uid"; 
+        $sql = "SELECT * FROM works WHERE userid= :uid ORDER BY duedate"; 
         
         // THIRD: Prepare the SQL
         $statement = $connection->prepare($sql);
@@ -32,52 +32,38 @@ if (isset($_POST['submit'])) {
 
 
 <?php include "templates/header.php"; ?>
-
-
-<?php  
-    // if (isset($_POST['submit'])) {
-    //     //if there are some results
-    //     if ($result && $statement->rowCount() > 0) { ?>
-
 <div class="body">
-<h2>Results</h2>
+<h2>Edit Assignment</h2>
+    <div class="information">
+    <?php // This is a loop, which will loop through each result in the array
+        foreach($result as $row) { 
+    ?>
 
-<?php // This is a loop, which will loop through each result in the array
-    foreach($result as $row) { 
-?>
+    <p>
+        <?php //echo $row; ?>
+        Due Date:
+        <?php echo $row['duedate']; ?><br>
 
-<p>
-    <?php //echo $row; ?>
-    Due Date:
-    <?php echo $row['duedate']; ?><br>
+        Class:
+        <?php echo $row['class']; ?><br> 
+        
+        Assignment Name:
+        <?php echo $row['assignmentname']; ?><br> 
 
-    Class:
-    <?php echo $row['class']; ?><br> 
-    
-    Assignment Name:
-    <?php echo $row['assignmentname']; ?><br> 
+        Weighing:
+        <?php echo $row['weighing']; ?><br>
+        <a href='update-work.php?id=<?php echo $row['id']; ?>'>Edit</a>    
+    </p>
+    <hr>
+    <?php }; 
 
-    Weighing:
-    <?php echo $row['weighing']; ?><br>
-    <a href='update-work.php?id=<?php echo $row['id']; ?>'>Edit</a>    
-</p>
+    ?>
 
-<?php // this willoutput all the data from the array
-            //echo '<pre>'; var_dump($row); 
-?>
+    <form method="post">
 
-<hr>
-<?php }; //close the foreach
-    //     }; 
-    // }; 
-?>
+        <input type="submit" name="submit" value="View all" class="button">
 
-
-
-<form method="post">
-
-    <input type="submit" name="submit" value="View all">
-
-</form>
+    </form>
+    </div>
 </div>
 <?php include "templates/footer.php"; ?>

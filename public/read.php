@@ -1,6 +1,10 @@
 <?php 
 session_start();
-
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
 // this code will only execute after the submit button is clicked
 if (isset($_POST['submit'])) {
 	
@@ -13,7 +17,7 @@ if (isset($_POST['submit'])) {
         $connection = new PDO($dsn, $username, $password, $options);
 		
         // SECOND: Create the SQL 
-        $sql = "SELECT * FROM works WHERE userid= :uid"; 
+        $sql = "SELECT * FROM works WHERE userid= :uid ORDER BY duedate"; 
         
         // THIRD: Prepare the SQL
         $statement = $connection->prepare($sql);
@@ -33,50 +37,46 @@ if (isset($_POST['submit'])) {
 
 <?php include "templates/header.php"; ?>
 
-
-<?php  
-    if (isset($_POST['submit'])) {
-        //if there are some results
-        if ($result && $statement->rowCount() > 0) { ?>
-
 <div class="body">
-<h2>Results</h2>
+<h2>Existing Assignments</h2>
 
-<?php // This is a loop, which will loop through each result in the array
-    foreach($result as $row) { 
-?>
+    <div class="information">
+    <?php  
+        if (isset($_POST['submit'])) {
+            //if there are some results
+            if ($result && $statement->rowCount() > 0) { 
+            ?> 
+            
+    <?php // This is a loop, which will loop through each result in the array
+        foreach($result as $row) { 
+    ?>
 
-<p>
-    <?php //echo $row; ?>
+    <p>
+        <?php //echo $row; ?>
 
-    Due Date:
-    <?php echo $row['duedate']; ?><br>
-    
-    Class:
-    <?php echo $row['class']; ?><br> 
-    
-    Assignment Name:
-    <?php echo $row['assignmentname']; ?><br> 
-    
-    Weighing:
-    <?php echo $row['weighing']; ?><br> 
-</p>
-
-<?php // this willoutput all the data from the array
-            //echo '<pre>'; var_dump($row); 
-?>
-
-<hr>
-<?php }; //close the foreach
+        Due Date:
+        <?php echo $row['duedate']; ?><br>
+        
+        Class:
+        <?php echo $row['class']; ?><br> 
+        
+        Assignment Name:
+        <?php echo $row['assignmentname']; ?><br> 
+        
+        Weighing:
+        <?php echo $row['weighing']; ?><br> 
+    </p>
+    <hr>
+    <?php }; //close the foreach
+            }; 
         }; 
-    }; 
-?>
+    ?>
+        <form method="post">
 
-    <form method="post">
-
-        <input type="submit" name="submit" value="View all">
-    
-    </form>
+            <input type="submit" name="submit" value="View all" class="button">
+        
+        </form>
+    </div>
 </div>
 
 <?php include "templates/footer.php"; ?>

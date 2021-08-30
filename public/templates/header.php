@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/css/spectre.css">
     <link rel="stylesheet" href="assets/css/spectre-exp.css">
     <link rel="stylesheet" href="assets/css/spectre-icons.css">
+
 </head>
 
 <body>
@@ -19,7 +20,7 @@
         <nav>
             <ul>
                 <li><a href="create.php">Add new assignment</a></li>
-                <li><a href="read.php">Find pre-existing assignment</a></li>
+                <li><a href="read.php">Find existing assignment</a></li>
                 <li><a href="update.php">Edit assignment</a></li>
                 <li><a href="delete.php">Delete assignment</a></li>
                 <li><a href="logout.php">Logout</a></li>
