@@ -84,33 +84,35 @@ session_start();
 
 <?php include "templates/header.php"; ?>
 
-<?php if (isset($_POST['submit']) && $statement) : ?>
-	<p>Work successfully updated.</p>
-<?php endif; ?>
 
-<div class="body">
-<h2>Edit a work</h2>
+    <div class="createbody">
+    <h2>Edit Assignment Details</h2>
 
-<form method="post">
     
-    <label for="class">Class</label>
-    <input type="text" name="class" id="class" value="<?php echo escape($work['class']); ?>">
+    <?php if (isset($_POST['submit']) && $statement) : ?>
+        <p>Work successfully updated.</p>
+        
+    <?php endif; ?>
 
-    <label for="assignmentname">Assignment Name</label>
-    <input type="text" name="assignmentname" id="assignmentname" value="<?php echo escape($work['assignmentname']); ?>">
 
-    <label for="duedate">Due Date</label>
-    <input type="date" name="duedate" id="duedate" value="<?php echo escape($work['duedate']); ?>">
+    <form method="post">
+        
+        <label for="class">Class</label>
+        <input type="text" name="class" id="class" value="<?php echo escape($work['class']); ?>">
 
-    <label for="weighing">Weighing</label>
-    <input type="text" name="weighing" id="weighing" value="<?php echo escape($work['weighing']); ?>">
+        <label for="assignmentname">Assignment Name</label>
+        <input type="text" name="assignmentname" id="assignmentname" value="<?php echo escape($work['assignmentname']); ?>">
+
+        <label for="duedate">Due Date</label>
+        <input type="date" name="duedate" id="duedate" value="<?php echo escape($work['duedate']); ?>">
+
+        <label for="weighing">Weighing</label>
+        <input type="text" name="weighing" id="weighing" value="<?php echo escape($work['weighing']); ?>">
+
+        <input type="submit" name="submit" value="Save">
     
-    <label for="date">Date</label>
-    <input type="text" name="date" id="date" value="<?php echo escape($work['date']); ?>">
+    </form>
 
-    <input type="submit" name="submit" value="Save">
- 
-</form>
 </div>
 
 

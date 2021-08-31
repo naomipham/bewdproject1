@@ -39,8 +39,8 @@ if (isset($_POST['submit'])) {
 
 <div class="body">
 <h2>Existing Assignments</h2>
-
-    <div class="information">
+<p>Monitor your assignment due dates</p>
+</div>
     <?php  
         if (isset($_POST['submit'])) {
             //if there are some results
@@ -51,32 +51,36 @@ if (isset($_POST['submit'])) {
         foreach($result as $row) { 
     ?>
 
-    <p>
-        <?php //echo $row; ?>
 
+        <?php //echo $row; ?>
+    <div class="information">
+    <p>
         Due Date:
         <?php echo $row['duedate']; ?><br>
-        
+       
         Class:
         <?php echo $row['class']; ?><br> 
-        
+
         Assignment Name:
         <?php echo $row['assignmentname']; ?><br> 
-        
+    
         Weighing:
         <?php echo $row['weighing']; ?><br> 
     </p>
     <hr>
+    </div>
+
     <?php }; //close the foreach
             }; 
         }; 
     ?>
+<div class="body">
         <form method="post">
 
             <input type="submit" name="submit" value="View all" class="button">
         
         </form>
-    </div>
+
 </div>
 
 <?php include "templates/footer.php"; ?>

@@ -5,7 +5,7 @@ session_start();
 if (isset($_POST['submit'])) {
 
 
-echo "<h1>Session ID:" . $_SESSION['id'] . "</h1>";
+echo $_SESSION['id'] ;
     // include the config file that we created before
     require "../config.php"; 
     
@@ -48,12 +48,13 @@ echo "<h1>Session ID:" . $_SESSION['id'] . "</h1>";
 <?php include "templates/header.php"; ?>
 
 
-<div class="body">
+<div class="createbody">
 <h2>Add a Assignment</h2>
+<p>Add your assignment details</p>
 
-    <div class="information">
     <?php if (isset($_POST['submit']) && $statement) { ?>
-    <p>Work successfully added.</p>
+    <p>Assignment successfully added.</p>
+    <a href='read.php?id=<?php echo $row['id']; ?>'>View Existing Assignments</a>
     <?php } ?>
 
     <!--form to collect data for each artwork-->
@@ -73,7 +74,7 @@ echo "<h1>Session ID:" . $_SESSION['id'] . "</h1>";
         <input type="submit" name="submit" value="Submit" class="button">
 
     </form>
-    </div>
+
 </div>
 
 <?php include "templates/footer.php"; ?>

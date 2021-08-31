@@ -54,14 +54,15 @@ session_start();
 
 
 <?php include "templates/header.php"; ?>
-
 <div class="body">
 <h2>Delete Assignment</h2>
+
 <p> Congratulations on finishing your assignment, lets get rid of it!</p>
-    <div class="information">
+</div>
     <?php // This is a loop, which will loop through each result in the array
         foreach($result as $row) { 
     ?>
+    <div class="information">
     <p>
         <?php //echo $row; ?>
         Due Date:
@@ -79,13 +80,14 @@ session_start();
         href='delete.php?id=<?php echo $row['id']; ?>'>Delete</a>
     </p>
 
-    <hr>        
+    <hr> 
+    </div>       
     <?php }; 
 
     ?>
+<div class="body">
     <form method="post" onsubmit="return confirm('Are you sure?')">
         <input type="submit" name="submit" value="View all" class="button">
     </form>
-    </div>
 </div>
 <?php include "templates/footer.php"; ?>

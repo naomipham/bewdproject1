@@ -34,11 +34,12 @@ if (isset($_POST['submit'])) {
 <?php include "templates/header.php"; ?>
 <div class="body">
 <h2>Edit Assignment</h2>
-    <div class="information">
+<p>Select 'edit' on the assignment you wish to change details</p>
+</div>
     <?php // This is a loop, which will loop through each result in the array
         foreach($result as $row) { 
     ?>
-
+    <div class="information">
     <p>
         <?php //echo $row; ?>
         Due Date:
@@ -55,15 +56,15 @@ if (isset($_POST['submit'])) {
         <a href='update-work.php?id=<?php echo $row['id']; ?>'>Edit</a>    
     </p>
     <hr>
+    </div>
     <?php }; 
 
     ?>
-
+<div class="body">
     <form method="post">
 
         <input type="submit" name="submit" value="View all" class="button">
 
-    </form>
-    </div>
+    </form>   
 </div>
 <?php include "templates/footer.php"; ?>
