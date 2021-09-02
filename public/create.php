@@ -61,17 +61,17 @@ echo $_SESSION['id'] ;
 
     <form method="post">
         <label for="class">Class</label>
-        <input type="text" name="class" id="class">
+        <input type="text" name="class" id="class" required>
 
         <label for="assignmentname">Assignment Name</label>
-        <input type="text" name="assignmentname" id="assignmentname">
+        <input type="text" name="assignmentname" id="assignmentname" required>
 
         <label for="duedate">Due Date</label>
-        <input type="date" value="<?php echo date ('Y-m-d');?>" name="duedate" id="duedate">
+        <input type="date" value="<?php echo date ('Y-m-d');?>" name="duedate" id="duedate" reqired>
 
         <label for="weighing">Weighting</label>
         <input type="text" name="weighing" id="weighing">
-        <input type="submit" name="submit" value="Submit" class="button">
+        <input type="submit" name="submit" value="Submit" class="button" required>
 
     </form>
 

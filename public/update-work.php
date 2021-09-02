@@ -2,7 +2,7 @@
 session_start();
     // include the config file that we created last week
     require "../config-remote.php";
-    require "../common.php";
+    require "common.php";
 
 
     // run when submit button is clicked

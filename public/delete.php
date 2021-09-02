@@ -3,7 +3,7 @@ session_start();
 
  // include the config file 
  require "../config-remote.php";
- require "../common.php";
+ require "common.php";
 
  // This code will only run if the delete button is clicked
  if (isset($_GET["id"])) {
