@@ -9,7 +9,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 if (isset($_POST['submit'])) {
 	
     // include the config file that we created before
-    require "../config-remote.php"; 
+    require "../config.php"; 
     
     // this is called a try/catch statement 
 	try {

@@ -2,7 +2,7 @@
 session_start();
 
  // include the config file 
- require "../config-remote.php";
+ require "../config.php";
  require "common.php";
 
  // This code will only run if the delete button is clicked

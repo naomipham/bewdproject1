@@ -1,7 +1,7 @@
 <?php 
 session_start();
     // include the config file that we created last week
-    require "../config-remote.php";
+    require "../config.php";
     require "common.php";
 
 
@@ -12,12 +12,12 @@ session_start();
             
             //grab elements from form and set as varaible
             $work =[
-              "id"         => $_POST['id'],
+              "id"         => $_GET['id'],
               "class" => $_POST['class'],
               "assignmentname"  => $_POST['assignmentname'],
               "duedate"   => $_POST['duedate'],
               "weighing"   => $_POST['weighing'],
-              "date"   => $_POST['date'],
+              "date"   => $_POST['date']
             ];
             
             // create SQL statement

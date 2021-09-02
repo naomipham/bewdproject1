@@ -20,9 +20,9 @@
         <nav>
             <ul>
                 <li><a href="create.php">Add new assignment</a></li>
-                <li><a href="read.php">Find existing assignment</a></li>
-                <li><a href="update.php">Edit assignment</a></li>
-                <li><a href="delete.php">Delete assignment</a></li>
+                <li><a href="read.php">View existing assignments</a></li>
+                <li><a href="update.php">Edit assignments</a></li>
+                <li><a href="delete.php">Delete assignments</a></li>
                 <li><a href="logout.php">Logout</a></li>
                 <li><a href="pwdreset.php">Reset Password</a></li>
             </ul>
