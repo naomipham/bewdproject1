@@ -9,7 +9,7 @@ include "templates/header.php";
 ?>
 
 <div class="createbody">
-<h1> Welcome!</h1>
+<h1> Welcome <?php echo $_SESSION["username"]; ?></h1>
 <p> Start by adding new assignments</p>
 <a href='create.php?id=<?php echo $row['id']; ?>'>Add New Assignment here</a> 
 <p> </p>

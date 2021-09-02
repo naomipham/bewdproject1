@@ -1,7 +1,7 @@
 <?php 
 session_start();
     // include the config file that we created last week
-    require "../config.php";
+    require "../config-remote.php";
     require "../common.php";
 
 

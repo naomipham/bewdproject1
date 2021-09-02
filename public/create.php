@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 
 echo $_SESSION['id'] ;
     // include the config file that we created before
-    require "../config.php"; 
+    require "../config-remote.php"; 
     
     // this is called a try/catch statement 
 	try {
