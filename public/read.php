@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
         Assignment Name:
         <?php echo $row['assignmentname']; ?><br> 
     
-        Weighing:
+        Weighting:
         <?php echo $row['weighing']; ?><br> 
     </p>
     <hr>

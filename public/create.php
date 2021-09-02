@@ -69,7 +69,7 @@ echo $_SESSION['id'] ;
         <label for="duedate">Due Date</label>
         <input type="date" value="<?php echo date ('Y-m-d');?>" name="duedate" id="duedate">
 
-        <label for="weighing">Weighing</label>
+        <label for="weighing">Weighting</label>
         <input type="text" name="weighing" id="weighing">
         <input type="submit" name="submit" value="Submit" class="button">
 

@@ -74,7 +74,7 @@ session_start();
         Assignment Name:
         <?php echo $row['assignmentname']; ?><br> 
         
-        Weighing:
+        Weighting:
         <?php echo $row['weighing']; ?><br>
         <a onClick="return confirm('Do you really want to delete this item?');" 
         href='delete.php?id=<?php echo $row['id']; ?>'>Delete</a>

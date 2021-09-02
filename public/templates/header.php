@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <h1><a href="index.php">Assignment Tracker</a></h1>
+        <h1><a href="homepage.php">Assignment Tracker</a></h1>
         <nav>
             <ul>
                 <li><a href="create.php">Add new assignment</a></li>

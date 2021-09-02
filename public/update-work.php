@@ -106,7 +106,7 @@ session_start();
         <label for="duedate">Due Date</label>
         <input type="date" name="duedate" id="duedate" value="<?php echo escape($work['duedate']); ?>">
 
-        <label for="weighing">Weighing</label>
+        <label for="weighing">Weighting</label>
         <input type="text" name="weighing" id="weighing" value="<?php echo escape($work['weighing']); ?>">
 
         <input type="submit" name="submit" value="Save">

@@ -105,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="button" value="Submit">
             </div>
             <div class="button">
-                <a class="button" href="index.php">Cancel</a>
+                <a class="button" href="homepage.php">Cancel</a>
             </div>
         </form>
     </div>    
